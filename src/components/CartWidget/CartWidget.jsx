@@ -1,11 +1,13 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Typography } from '@mui/material';
+import { Badge, IconButton } from '@mui/material';
 
-const CartWidget = () => {
+const CartWidget = ({cartQuantity}) => {
     return (
-        <Typography variant="h4">
-            <ShoppingCartIcon /> 0
-        </Typography>
+        <IconButton>
+            <Badge badgeContent={cartQuantity} color="error">
+                <ShoppingCartIcon />
+            </Badge>
+        </IconButton>
     )
 }
 
