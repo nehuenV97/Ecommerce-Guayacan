@@ -1,38 +1,34 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getProducts } from "../../asyncMock";
-import Item from "../Item/Item";
+import { getProducts, getProductByCategory } from "../../asyncMock";
+import ItemList from "../ItemList/ItemList";
+// import Item from "../Item/Item";
+
+import { useParams } from 'react-router-dom';
 
 const ItemListContainer = ({ greeting }) => {
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        setLoading(true);
-        getProducts()
-        .then((res) => {            
-            setProducts(res)
-        })
-        .finally(() => {
-            setLoading(false)
-        })
-    }, [])
+    const { categoryId } = useParams();
     
+    useEffect(() => {
+        const asyncFunc = categoryId ? getProductByCategory : getProducts;
+
+        asyncFunc(categoryId)
+            .then(response => {
+                setProducts(response)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }, [categoryId])
+
     return (
         <Box>
             <Typography variant="h4">{greeting}</Typography>
-            <Box display={'flex'} justifyContent={'start'} flexDirection={'row'} gap={5}>
-            {
-                loading ?
-                <Typography>Cargando...</Typography>
-                :
-                products?.map((item, index) => {
-                    return (
-                        <Item key={index + item.nombre} name={item.nombre} price={item.precio} stock={item.cantidad} imageURL={item.imageURL} />
-                    )
-                })
-            }
-        </Box>
+            <Box sx={{margin: 5}}>
+                <ItemList products={products} />
+            </Box>
         </Box>
     )
 }
