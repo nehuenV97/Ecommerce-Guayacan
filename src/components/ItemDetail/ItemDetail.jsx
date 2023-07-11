@@ -1,33 +1,36 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import ItemCount from "../ItemCount/ItemCount";
 
-const ItemDetail = ({ id, name, price, description, stock, imageURL, category}) => {
+const ItemDetail = ({ id, nombre, precio, descripcion, cantidad, imageURL, categoria}) => {
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
+        <Card sx={{ display: 'flex', width: 1000}}>            
                 <CardMedia
                     component="img"
-                    alt={ name }
-                    height="140"
+                    alt={ nombre }
+                    height="450"
+                    width="450"
                     image={ imageURL }
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        { name }
+                />                
+                <CardContent sx={{display: 'flex', flexDirection: 'column', gap: 3, minWidth: 500}}>
+                    <Typography gutterBottom variant="h3" component="div">
+                        { nombre }
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Categoría: { category }
+                    <Typography variant="subtitle1" color="text.secondary">
+                        Descripción: { descripcion || ''} 
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Precio: { price }
+                    <Typography variant="body1" color="text.secondary">
+                        Categoría: { categoria }
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Stock: { stock }
+                    <Typography variant="body1" color="text.secondary">
+                        Precio: $ { precio } 
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Descripción: { description || ''}
+                    <Typography variant="body1" color="text.secondary">
+                        Stock: { cantidad }
                     </Typography>
-                </CardContent>
-            </CardActionArea>
+                    <Typography component='footer'>
+                        <ItemCount />
+                    </Typography>
+                </CardContent>                       
         </Card>
     )
 }
