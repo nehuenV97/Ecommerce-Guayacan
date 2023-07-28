@@ -1,27 +1,40 @@
-import { Box } from "@mui/material"
+import { Box, CircularProgress } from "@mui/material"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductById } from "../../asyncMock";
 import ItemDetail from "../ItemDetail/ItemDetail";
+
+import { doc, getDoc} from "firebase/firestore"
+import { db } from "../../firebase/config";
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState(null)
+    const [loading, setLoading] = useState(false)
 
-    const { itemId } = useParams();
+    const { itemId } = useParams(); 
 
     useEffect(() => {
-        getProductById(itemId)
-            .then(response => {
-                setProduct(response)
+        setLoading(true);
+        const docRef = doc(db, "productos", itemId)
+
+        getDoc(docRef)
+            .then((resp) => {
+                setProduct(
+                    { ...resp.data(), id: resp.id}
+                )
             })
-            .catch(error => {
-                console.error(error)
+            .finally(() => {
+                setLoading(false);
             })
     }, [itemId])
 
     return (
         <Box sx={{display: 'flex', justifyContent: 'center', margin: 10}}>
-            <ItemDetail {...product} />  
+            {
+                loading ?
+                <CircularProgress sx={{margin: 5}}/>
+                :
+                <ItemDetail {...product} />
+            }
         </Box>
     )
 }

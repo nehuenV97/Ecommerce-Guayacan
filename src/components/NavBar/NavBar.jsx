@@ -1,5 +1,7 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 import CartWidget from "../CartWidget/CartWidget";
 
 const navLinks = [
@@ -22,18 +24,25 @@ const navLinks = [
 ]
 
 const NavBar = () => {
+    const { cartQuantity } = useContext(CartContext);
+
     return (
         <>
-            <AppBar position="static" sx={{backgroundColor: 'green'}}>
+            <AppBar position="static" sx={{backgroundColor: '#43a047'}}>
                 <Toolbar>
-                    <Typography variant="h3" component={NavLink} to='/' sx={{flexGrow: 1, textDecoration: 'none', "&:visited": {color: '#fff'}}}>Guayacan</Typography>
+                    <Typography variant="h3" component={Link} to='/' sx={{flexGrow: 1, textDecoration: 'none', "&:visited": {color: '#fff'}, fontWeight: '500'}}>Guayacan</Typography>
                     <Box display={'flex'} gap={2}>
                         {
                             navLinks.map((item) => (
                                 <Button key={item.titulo} component={NavLink} to={item.path} variant='filled'>{ item.titulo }</Button>
                             ))
                         }
-                        <CartWidget cartQuantity={5}/>
+                        {
+                            cartQuantity === 0 ?
+                                null
+                            :
+                                <CartWidget cartQuantity={cartQuantity}/>
+                        }
                     </Box>
                 </Toolbar>
             </AppBar>

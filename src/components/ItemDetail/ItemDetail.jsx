@@ -1,20 +1,34 @@
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Divider, Typography } from "@mui/material";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ id, nombre, precio, descripcion, cantidad, imageURL, categoria}) => {
+    const { addProductToCarrito } = useContext(CartContext);
+    
+    const addToCarrito = (quantity) => {
+        addProductToCarrito({
+            id: id,
+            producto: nombre,
+            pricePerUnit: precio,
+            quantity: quantity,
+            priceTotal: quantity * precio
+        })
+    }
+
     return (
-        <Card sx={{ display: 'flex', width: 1000}}>            
+        <Card sx={{ display: 'flex', width: 1000, border: '2px solid #43a047'}}>        
                 <CardMedia
                     component="img"
                     alt={ nombre }
-                    height="450"
-                    width="450"
+                    height="450"                
                     image={ imageURL }
                 />                
-                <CardContent sx={{display: 'flex', flexDirection: 'column', gap: 3, minWidth: 500}}>
-                    <Typography gutterBottom variant="h3" component="div">
+                <CardContent sx={{display: 'flex', flexDirection: 'column', gap: 3, minWidth: 500, backgroundColor: '#ebebeb'}}>
+                    <Typography gutterBottom variant="h4" component="div">
                         { nombre }
                     </Typography>
+                    <Divider />
                     <Typography variant="subtitle1" color="text.secondary">
                         Descripción: { descripcion || ''} 
                     </Typography>
@@ -22,13 +36,13 @@ const ItemDetail = ({ id, nombre, precio, descripcion, cantidad, imageURL, categ
                         Categoría: { categoria }
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                        Precio: $ { precio } 
+                        Precio: ${ precio } 
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
                         Stock: { cantidad }
                     </Typography>
                     <Typography component='footer'>
-                        <ItemCount />
+                        <ItemCount stock={cantidad} addToCarrito={addToCarrito} />
                     </Typography>
                 </CardContent>                       
         </Card>

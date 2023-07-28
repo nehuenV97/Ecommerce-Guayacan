@@ -3,7 +3,7 @@ import Item from "../Item/Item";
 
 const ItemList = ({products}) => {
     return (
-        <Box display={'flex'} justifyContent={'start'} flexDirection={'row'} gap={5} flexWrap={'wrap'}>
+        <Box sx={{display: 'flex', justifyContent: 'center', flexDirection: 'row', gap: 3, flexWrap: 'wrap'}}>
             {
                 products?.map((item, index) => {
                     return (

@@ -5,6 +5,7 @@ const Item = ({ id, name, price, description, stock, imageURL}) => {
     return (
         <Card sx={{ 
             maxWidth: 345,
+            width: 285,
             transition: "0.2s",
             "&:hover": {
                 transform: "scale(1.05)",
@@ -14,7 +15,7 @@ const Item = ({ id, name, price, description, stock, imageURL}) => {
                 <CardMedia
                     component="img"
                     alt={ name }
-                    height="140"
+                    height="200"
                     image={ imageURL }
                 />
                 <CardContent>
@@ -22,16 +23,15 @@ const Item = ({ id, name, price, description, stock, imageURL}) => {
                         { name }
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Precio: { price }
+                        Precio: ${ price }
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         Stock: { stock }
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button size="small">Comprar</Button>
-                <Button size="small" component={NavLink} to={`/item/${id}`}>Ver detalle</Button>           
+            <CardActions sx={{display: 'flex', justifyContent: 'center'}}>            
+                <Button variant='contained' component={NavLink} to={`/item/${id}`}>Ver detalle</Button>          
             </CardActions>
         </Card>
     )
