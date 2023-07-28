@@ -7,6 +7,11 @@ const CartProvider = ({ children }) => {
     const [carrito, setCarrito] = useState([]);
 
     const addProductToCarrito = (product) => {
+        const estaEnElCarrito = carrito.find((item) => item.id === product.id);
+
+        if (estaEnElCarrito) {
+            return;
+        }
         setCarrito([...carrito, product])
     }
 

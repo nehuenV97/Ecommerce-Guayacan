@@ -16,15 +16,11 @@ Instalar el proyecto con npm:
   npm install
 ```
 
-Nos ubicamos en la carpeta del proyecto:
-```bash
-  cd ecommerce
-```
-
 Iniciamos el proyecto en un servidor:
 ```bash
   npm start
 ```
+
 Visitamos el proyecto en el sevidor: 
 ```bash
   http://localhost:3000/
