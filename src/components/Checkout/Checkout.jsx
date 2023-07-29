@@ -5,6 +5,15 @@ import { useForm } from "react-hook-form";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
+const ESTILOS_FORM = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    backgroundColor: '#ebebeb',
+    padding: 2,
+    boxShadow: '1px 1px 2px 1px gray'
+}
+
 const Checkout = () => {
     const { register, handleSubmit } = useForm();
     const { carrito, vaciarCarrito, precioTotal } = useContext(CartContext);
@@ -67,7 +76,7 @@ const Checkout = () => {
             <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt:2, width: '30%'}}>
                 <Typography variant="h4">Informacion del Usuario</Typography>
 
-                <Box component="form" onSubmit={handleSubmit(comprar)} sx={{display: 'flex', flexDirection: 'column', gap: 2, backgroundColor: '#ebebeb', padding: 2, boxShadow: '1px 1px 2px 1px gray'}}>
+                <Box component="form" onSubmit={handleSubmit(comprar)} sx={ESTILOS_FORM}>
                     <TextField
                         id="nombre"
                         label="Nombre"
@@ -99,10 +108,6 @@ const Checkout = () => {
                     />                
                     <Button type="submit" variant='contained' >Finalizar Compra</Button> 
                 </Box>
-                {/* <input type="text" placeholder="Nombre" value={nombre} onChange={(event) => setNombre(event.target.value)}/>
-                <input type="text" placeholder="Apellido" value={apellido} onChange={(event) => setApellido(event.target.value)}/>
-                <input type="text" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)}/>
-                <input type="text" placeholder="Telefono" value={telefono} onChange={(event) => setTelefono(event.target.value)}/> */}
             </Box>
         </Box>
     )
