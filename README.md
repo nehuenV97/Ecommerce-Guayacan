@@ -21,7 +21,7 @@ Iniciamos el proyecto en un servidor:
   npm start
 ```
 
-Visitamos el proyecto en el sevidor: 
+Visitamos el proyecto en el servidor: 
 ```bash
   http://localhost:3000/
 ```
