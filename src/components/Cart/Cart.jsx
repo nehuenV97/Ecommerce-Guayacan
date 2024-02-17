@@ -10,16 +10,33 @@ const Cart = () => {
 
     if (carrito.length <= 0) {
         return (
-            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', margin: 2, gap: 2}}>
-                <Typography variant='h3'>No hay productos en el carrito</Typography>
+            <Box 
+                sx={{
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    margin: 2, 
+                    gap: 2, 
+                    textAlign: 'center'
+                }}
+            >
+                <Typography variant='h4'>No hay productos en el carrito</Typography>
                 <Button component={NavLink} to='/' variant='contained'>Ir a productos</Button>
             </Box>
         )
     }
 
     return (
-        <Box sx={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
-            <Typography variant='h3'>Carrito de compras</Typography>
+        <Box 
+            sx={{
+                display: 'flex', 
+                justifyContent: 'center', 
+                flexDirection: 'column', 
+                alignItems: 'center',
+                p: 1
+            }}
+        >
+            <Typography variant='h4'>Carrito de compras</Typography>
             {
                 carrito.map((prod) => (
                     <Box key={prod.id} sx={DETALLE_COMPRA}>
@@ -37,10 +54,27 @@ const Cart = () => {
                     </Box>
                 ))
             }
-            <Box sx={{margin: 2, padding: 2, boxShadow: '1px 1px 2px 1px gray', backgroundColor: '#ebebeb', borderRadius: '5px'}}>
+            <Box 
+                sx={{
+                    margin: 2, 
+                    padding: 2, 
+                    boxShadow: '1px 1px 2px 1px gray', 
+                    backgroundColor: '#ebebeb', 
+                    borderRadius: '5px',
+                    textAlign: 'center'
+                }}
+            >
                 <Typography variant='h4'>Precio Final: ${precioTotal()}</Typography>
             </Box>
-            <Box sx={{display: 'flex', flexDirection: 'column', gap: 1, width: '15%'}}>
+            <Box 
+                sx={{
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center',
+                    alignItems: 'center', 
+                    gap: 1, 
+                }}
+            >
                 <Button fullWidth onClick={vaciarCarrito} variant='contained'>Limpiar carrito</Button>
                 <Button fullWidth component={NavLink} to='/checkout' variant='contained'>Checkout</Button>
             </Box>

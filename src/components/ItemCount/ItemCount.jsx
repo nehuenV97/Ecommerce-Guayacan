@@ -39,12 +39,20 @@ const ItemCount = ({ stock, addToCarrito }) => {
                     </Box>
                 :
                     <>
-                        <Box sx={{display: 'flex', flexDirection: 'row', gap: 2, justifyContent: 'center'}}>
+                        <Box 
+                            sx={{
+                                display: 'flex', 
+                                flexDirection: {xs: 'column', sm: 'row'}, 
+                                gap: 2, 
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}
+                        >
                             <Button variant='contained' onClick={handleSubstract}>-</Button>
                             <Typography variant="h5">Cantidad: {counter}</Typography>                
                             <Button variant='contained' onClick={handleAdd}>+</Button>                
                         </Box>
-                        <Box sx={{display: 'flex', justifyContent: 'center', margin: 2}}>
+                        <Box sx={{display: 'flex', justifyContent: 'center', mt: 2}}>
                             <Button onClick={handleCarrito} variant='contained'>Agregar al carrito</Button>
                         </Box>
                     </>

@@ -1,5 +1,5 @@
 export const DETALLE_COMPRA = {
-    width: '60%',
+    width: '90%',
     boxShadow: '1px 1px 2px 1px gray',
     display: 'flex',    
     flexDirection: 'column',
@@ -18,7 +18,9 @@ export const TITULO_ITEM = {
 
 export const DETALLE_ITEM = {
     display: 'flex',
+    flexDirection: {xs: 'column', sm: 'row'},
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '2px 5px'
+    padding: '2px 5px',
+    flexWrap: 'wrap'
 }

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Divider, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
@@ -17,14 +17,37 @@ const ItemDetail = ({ id, nombre, precio, descripcion, cantidad, imageURL, categ
     }
 
     return (
-        <Card sx={{ display: 'flex', width: 1000, border: '2px solid #43a047'}}>        
-                <CardMedia
-                    component="img"
-                    alt={ nombre }
-                    height="450"                
-                    image={ imageURL }
-                />                
-                <CardContent sx={{display: 'flex', flexDirection: 'column', gap: 3, minWidth: 500, backgroundColor: '#ebebeb'}}>
+        <Grid container 
+            sx={{               
+                width: '80%',
+                mt: 5, 
+                border: '2px solid #43a047'
+            }}
+        >        
+            <Grid item xs={ 12 } sm={ 6 }>
+                <Box sx={{ width: '100%'}}>
+                    <Box
+                        component="img"
+                        alt={ nombre }                                       
+                        src={ imageURL }
+                        sx={{ width: '100%', height: '100%', objectFit: 'cover'}}
+                    />
+                </Box>
+            </Grid>
+            
+            <Grid item xs={ 12 } sm={ 6 } 
+                sx={{
+                    p: 2,               
+                    backgroundColor: '#ebebeb'
+                }}
+            >   
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 5                        
+                    }}
+                >
                     <Typography gutterBottom variant="h4" component="div">
                         { nombre }
                     </Typography>
@@ -44,8 +67,9 @@ const ItemDetail = ({ id, nombre, precio, descripcion, cantidad, imageURL, categ
                     <Typography component='footer'>
                         <ItemCount stock={cantidad} addToCarrito={addToCarrito} />
                     </Typography>
-                </CardContent>                       
-        </Card>
+                </Box>             
+            </Grid>                       
+        </Grid>
     )
 }
 

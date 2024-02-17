@@ -11,7 +11,7 @@ import { db } from "../../firebase/config";
 const BOX_TITULO = {
     boxShadow: '1px 0px 2px 1px gray',
     borderRadius: '5px 5px 0px 0px', 
-    width: 1275,
+    width: '90%',
     backgroundColor: '#43a047',
     color: '#fff',
     display: 'flex',
@@ -21,7 +21,7 @@ const BOX_TITULO = {
 
 const BOX_ITEMLIST = {
     boxShadow: '1px 1px 2px 1px gray',
-    width: 1275,
+    width: '90%',
     borderRadius: '0px 0px 5px 5px',
     padding: 3,
     margin: '0px 4px 10px',
@@ -54,18 +54,27 @@ const ItemListContainer = ({ greeting }) => {
     }, [categoryId])
 
     return (
-        <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center',flexDirection: 'column', mt: 1}}>
+        <Box 
+            sx={{
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center',
+                flexDirection: 'column',
+                p: 1, 
+                mt: 1
+            }}
+        >
             {
                 loading ?                
-                <CircularProgress sx={{margin: 5}}/>
+                    <CircularProgress sx={{margin: 5}}/>
                 :
                 <>
-                <Box sx={BOX_TITULO}>
-                    <Typography variant="h4">{greeting || toMayuscula(categoryId)}</Typography>
-                </Box>
-                <Box sx={BOX_ITEMLIST}>
-                    <ItemList products={products} />
-                </Box>
+                    <Box sx={BOX_TITULO}>
+                        <Typography variant="h4">{greeting || toMayuscula(categoryId)}</Typography>
+                    </Box>
+                    <Box sx={BOX_ITEMLIST}>
+                        <ItemList products={products} />
+                    </Box>
                 </>
             }
         </Box>

@@ -64,16 +64,37 @@ const Checkout = () => {
 
     if (ordenId) {
         return (
-            <Box sx={{display: 'flex', alignItems: 'center', flexDirection: 'column', margin: 2}}>
+            <Box 
+                sx={{
+                    display: 'flex', 
+                    justifyContent: 'center', 
+                    alignItems: 'center', 
+                    flexDirection: 'column',
+                    textAlign: 'center', 
+                    p: 2
+                }}
+            >
                 <Typography variant='h3'>Muchas gracias por tu compra</Typography>
-                <Typography variant='h4'>Tu numero de orden es: {ordenId}</Typography>
+                <Typography sx={{ mt: 2 }} variant='h4'>Tu numero de orden es:</Typography>
+                <Typography variant='h4'>{ordenId}</Typography>
             </Box>
         )
     }
 
     return (
         <Box sx={{display: 'flex', justifyContent: 'center'}}>
-            <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, mt:2, width: '30%'}}>
+            <Box 
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center', 
+                    flexDirection: 'column', 
+                    gap: 2, 
+                    mt:2, 
+                    width: '100%', 
+                    textAlign: 'center'
+                }}
+            >
                 <Typography variant="h4">Informacion del Usuario</Typography>
 
                 <Box component="form" onSubmit={handleSubmit(comprar)} sx={ESTILOS_FORM}>

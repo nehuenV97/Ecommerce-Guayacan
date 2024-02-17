@@ -28,7 +28,15 @@ const ItemDetailContainer = () => {
     }, [itemId])
 
     return (
-        <Box sx={{display: 'flex', justifyContent: 'center', margin: 10}}>
+        <Box 
+            sx={{
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center',
+                p: 1,
+                height: '80%'
+            }}
+        >
             {
                 loading ?
                 <CircularProgress sx={{margin: 5}}/>
